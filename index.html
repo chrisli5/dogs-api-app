@@ -8,8 +8,14 @@
     <body>
         <div class="container">
             <h1>Dog API: A Simple Example</h1>
-            <form>
-                <input id="text" type="text" value=3 required>
+            <form id="dogForm">
+                <h2>Get Random Images By #</h2>
+                <input id="number" type="number" value=3 required>
+                <input type="submit" value="SUBMIT">
+            </form>
+            <form id="breedForm">
+                <h2>Get Random Dog By Breed</h2>
+                <input id="text" type="text" value="hound" required>
                 <input type="submit" value="SUBMIT">
             </form>
             <div id="images"></div>
