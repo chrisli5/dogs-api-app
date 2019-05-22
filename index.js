@@ -11,7 +11,7 @@ function getDogs(num) {
             displayImg(responseJson.message);
         })
         .catch(e => {
-            alert(`Error getting dog by breed!`);
+            alert('Error fetching images!');
         });
 }
 
@@ -19,8 +19,15 @@ function getDogBreed(breed) {
     fetch(`https://dog.ceo/api/breed/${breed}/images/random`)
         .then(response => response.json())
         .then(responseJson => {
-            $('#images').append(`<img src=${responseJson.message} alt="dog image" />`)
-        });
+            if(responseJson.status === "success") {
+                $('#images').append(`<img src=${responseJson.message} alt="dog image" />`)
+            } else {
+                alert('Breed not found!');
+            }
+        })
+        .catch(e => {
+            alert('Error fetching images!');
+        })
 }
 
 function mainApp() {
@@ -28,7 +35,12 @@ function mainApp() {
         event.preventDefault();
         $('#images').empty();
         const num = $('#number').val();
-        getDogs(num);
+        
+        if(num >= 3 && num <= 50) {
+            getDogs(num);
+        } else {
+            alert('Value must be between 3 and 50.');
+        };
     })
 
     $('#breedForm').submit(function(event) {
